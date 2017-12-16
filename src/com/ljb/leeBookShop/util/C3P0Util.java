@@ -1,4 +1,4 @@
-package com.lib.util;
+package com.ljb.leeBookShop.util;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
