@@ -55,4 +55,30 @@ public class UserService {
         }
         return user;
     }
+    /*
+    * 根据id找用户
+    * */
+    public User findUserById(String useid) throws UserException {
+
+        try {
+            User user = ud.findUserById(useid);
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UserException("修改失败！");
+        }
+
+    }
+    /*
+    * 跟新用户信息
+    * */
+    public void updateUser(User user) throws UserException {
+
+        try {
+            ud.updateUser(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UserException("更新失败！");
+        }
+    }
 }

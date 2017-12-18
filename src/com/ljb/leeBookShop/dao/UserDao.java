@@ -36,4 +36,15 @@ public class UserDao {
         QueryRunner queryRunner = new QueryRunner(C3P0Util.getDs());
         return queryRunner.query("select * from user where username = ? and password = ?", new BeanHandler<User>(User.class),username,password);
     }
+
+    public User findUserById(String useid) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(C3P0Util.getDs());
+        return queryRunner.query("select * from user where id = ?", new BeanHandler<User>(User.class),useid);
+    }
+
+    public void updateUser(User user) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(C3P0Util.getDs());
+        queryRunner.update("update user set password=?, gender=?, telephone=? where id=? ",user.getPassword(),
+                user.getGender(),user.getTelephone(),user.getId());
+    }
 }
