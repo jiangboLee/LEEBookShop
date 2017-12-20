@@ -67,13 +67,16 @@ class MyRequest extends HttpServletRequestWrapper {
                     String[] values = parameterMap.get(parameterName);
                     if (values != null) {
                         for (int i = 0; i < values.length; i++) {
-                            try {
+                            /*try {
                                 // 处理get乱码
                                 values[i] = new String(values[i]
                                         .getBytes("ISO-8859-1"), "utf-8");
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
+                            //值得注意的是，从tomcat8.0开始，URIEncoding默认值不再是ISO8859-1，而变成了UTF-8
+                            values[i] = new String(values[i]
+                                    .getBytes());
                         }
                     }
                 }
